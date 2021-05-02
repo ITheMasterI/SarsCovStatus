@@ -1,0 +1,106 @@
+
+<head>
+
+
+    <link rel="stylesheet" href="usuario-atualiza.component.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Editar Paciente</title>
+  </head>
+  <body>
+
+    <style>
+      body{
+
+        background-image: url(assets/img/backgroundloginfade.jpg);
+        background-attachment: fixed;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 1000px;
+      }
+    </style>
+
+<button
+class="btn-navgation"
+type="button"
+value="Voltar"
+onClick="history.go(-1)"
+>
+<img src="assets/img/back_icon.png" width="75px" alt="" />
+</button>
+
+  <br /><br /><br />
+
+  <form (submit)="onSalvarUsuario(usuarioForm)" *ngIf="!estaCarregando" #usuarioForm="ngForm">
+    <div class="wrapper">
+
+
+      <div class="form-group row">
+        <label for="nomeInput" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="nome" placeholder="Nome" [ngModel]="usuario?.nome"
+          #nome="ngModel"/>
+        </div>
+      </div>
+
+      <br>
+
+
+      <div class="form-group row">
+        <label for="cpfInput" class="col-sm-2 col-form-label">CPF</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="cpf" placeholder="CPF" [ngModel]="usuario?.cpf"
+          #cpf="ngModel"/>
+        </div>
+      </div>
+
+<br>
+
+      <div class="form-group row">
+        <label for="emailInput" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" name="email" placeholder="E-mail" [ngModel]="usuario?.email"
+          #email="ngModel"/>
+        </div>
+      </div>
+
+      <br>
+
+
+      <label for="statusInput" placeholder="Seleciona uma categoria">Status atual do Paciente:  </label><br>
+            <select id="status" name="status" [ngModel]="usuario?.status"
+            #status="ngModel">
+              <option value="Estável ">Estavel</option>
+              <option value="Observação ">Observação</option>
+              <option value="Risco 🔴 ">Risco</option>
+            </select>
+
+<br>
+
+<br>
+      <div class="form-group">
+        <label for="relatorioInput">Relatório</label>
+        <textarea class="form-control" id="relatorio" name="relatorio" placeholder="Digite o relatório do paciente" rows="5" [ngModel]="usuario?.relatorio"
+        #relatorio="ngModel">
+
+
+        </textarea>
+      </div>
+
+
+        <br /><br /><br />
+
+
+        <button type="submit" class="btn btn-success btn-lg btn-block">
+          Atualizar
+        </button>
+    </div>
+    <br>
+    <br>
+  </form>
+</body>

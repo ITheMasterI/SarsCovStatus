@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="cadastro.component.css"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Cadastre-se!</title>
+  </head>
+  <body>
+    <style>
+      body{
+
+        background-image: url(assets/img/backgroundloginfade.jpg);
+        background-attachment: fixed;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 1000px;
+      }
+    </style>
+
+
+
+
+    <form>
+      <button
+        class="btn-navgation"
+        type="button"
+        value="Voltar"
+        onClick="history.go(-1)"
+      >
+        <img src="assets/img/back_icon.png" width="75px" alt="" />
+      </button>
+      <br />
+      <br />
+    </form>
+    <div class="wrapper">
+      <h2 class="wrapper-title" align="center">Cadastro Hospital</h2>
+      <hr />
+      <form autocomplete="on">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCNPJ">CNPJ</label>
+            <input type="text" class="form-control" id="inputCNPJ" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEndereco">Endereço</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputEndereco"
+              autocomplete=""
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputCEP">CEP</label>
+          <input type="text" class="form-control" id="inputCEP" />
+        </div>
+        <div class="form-group">
+          <label for="inputNum">Número</label>
+          <input type="text" class="form-control" id="inputNum" />
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputState">Estado</label>
+          <select id="inputState" class="form-control">
+            <option selected>Escolha um estado</option>
+            <option>AC</option>
+            <option>AL</option>
+            <option>AP</option>
+            <option>AM</option>
+            <option>BA</option>
+            <option>CE</option>
+            <option>DF</option>
+            <option>ES</option>
+            <option>GO</option>
+            <option>MA</option>
+            <option>MT</option>
+            <option>MS</option>
+            <option>MG</option>
+            <option>PA</option>
+            <option>PB</option>
+            <option>PI</option>
+            <option>RJ</option>
+            <option>RN</option>
+            <option>RS</option>
+            <option>RO</option>
+            <option>RR</option>
+            <option>SC</option>
+            <option>SP</option>
+            <option>SE</option>
+            <option>TO</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputTel">Telefone</label>
+          <input type="text" class="form-control" id="inputTel" />
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control" id="inputEmail" />
+        </div>
+        <div class="form-group">
+          <label for="inputSenha">Senha</label>
+          <input type="password" class="form-control" id="inputSenha" />
+        </div>
+      </form>
+      <p align="center">
+        <a routerLink="/login">Ja possui uma conta? Clique Aqui!</a>
+      </p>
+      <button type="submit" class="btn btn-success btn-lg btn-block">
+        Cadastrar!
+      </button>
+    </div>
+    <br/>
+    <br/>
+  </body>
+</html>

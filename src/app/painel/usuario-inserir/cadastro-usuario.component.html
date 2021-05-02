@@ -1,0 +1,99 @@
+
+  <head>
+
+    <link rel="stylesheet" href="cadastro-usuario.component.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Cadastrar Paciente</title>
+  </head>
+  <body>
+    <style>
+      body{
+
+        background-image: url(assets/img/backgroundloginfade.jpg);
+        background-attachment: fixed;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 1000px;
+      }
+    </style>
+    <button
+      class="btn-navgation"
+      type="button"
+      value="Voltar"
+      onClick="history.go(-1)"
+    >
+      <img src="assets/img/back_icon.png" width="75px" alt="" />
+    </button>
+    <br />
+    <br />
+    <div class="wrapper">
+      <h2 class="wrapper-title" align="center">Cadastro Paciente</h2>
+      <hr />
+      <form autocomplete="on">
+        <div class="form-row">
+
+
+          <form (submit)="onAdicionarUsuario(usuarioForm)" #usuarioForm="ngForm">
+
+            <div class="form-group col-md-6">
+              <label for="nomeInput">Nome</label>
+              <input type="text" size="100" class="form-control" placeholder="Nome" name="nome" id="nome"
+               ngModel>
+            </div>
+
+
+<br>
+
+
+            <div class="form-group col-md-6">
+              <label for="cpfInput">CPF</label>
+              <input type="text" class="form-control" placeholder="CPF" name="cpf" id="cpf"  ngModel>
+            </div>
+
+
+            <br>
+
+
+            <div class="form-group col-md-6">
+              <label for="emailInput">Email</label>
+              <input type="mail" class="form-control" placeholder="E-mail" name="email" id="email" ngModel>
+            </div>
+
+            <br>
+
+            <label for="statusInput" placeholder="Seleciona uma categoria">Status atual do Paciente:  </label><br>
+            <select id="status" name="status" ngModel>
+              <option value="Estável ">Estavel</option>
+              <option value="Observação ">Observação</option>
+              <option value="Risco 🔴 ">Risco 🔴</option>
+            </select>
+
+
+              <br>
+
+
+            <br>
+            <div class="form-group">
+              <label for="relatorioInput">Relatório</label>
+              <textarea class="form-control" id="relatorio" name="relatorio" placeholder="Digite o relatório do paciente" rows="5" ngModel></textarea>
+            </div>
+
+
+
+
+
+
+      <button type="submit" class="btn btn-success btn-lg btn-block">
+        Cadastrar!
+      </button>
+    </form>
+    </div>
+  </form>
+</div>
+  </body>

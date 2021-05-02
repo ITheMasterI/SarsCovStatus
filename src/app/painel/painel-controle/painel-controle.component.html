@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="painel-controle.component.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Painel de Controle</title>
+  </head>
+  <body>
+    <style>
+      body {
+        background-image: url(assets/img/backgroundloginfade.jpg);
+        background-attachment: fixed;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 1500px;
+
+      }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" routerLink="">
+        <img
+          src="assets/img/Icon.png"
+          width="50"
+          height="50"
+          class="d-inline-block align-top"
+          alt="Ícone"
+        />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/painel-controle"
+              >Painel de Controle <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/chat">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/logout">Sair</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <br />
+    <br />
+    <nav class="nav_tabs">
+      <ul>
+        <li>
+          <input type="radio" id="tab1" class="rd_tab" name="tabs" checked />
+          <label for="tab1" class="tab_label">Cadastrar Paciente</label>
+          <div class="tab-content">
+            <h2>Cadastrar</h2>
+            <article>
+              <a class="btn-add" routerLink="/cadastro-paciente">
+                <img
+                  width="50px"
+                  class=""
+                  src="assets/img/add_icon.png"
+                  alt=""
+                />
+              </a>
+            </article>
+          </div>
+        </li>
+
+        <li>
+          <input type="radio" name="tabs" class="rd_tab" id="tab2" />
+          <label for="tab2" class="tab_label">Meus Pacientes</label>
+          <div class="tab-content">
+            <h2 style="text-align: center">Lista de Pacientes</h2>
+
+            <!--Mexer daqui-->
+
+            <a *ngIf="usuarios.length > 0 && !estaCarregando">
+              <ul *ngFor="let usuario of usuarios">
+                  <div class="paciente-status">
+                    <p>
+                      <mat-expansion-panel-header>{{
+                        usuario.nome
+                      }}</mat-expansion-panel-header>
+                    </p>
+                    <p>ID: {{ usuario.id }}</p>
+                    <hr />
+                    <p>CPF: {{ usuario.cpf }}</p>
+                    <hr />
+                    <p>E-mail: {{ usuario.email }}</p>
+                    <hr />
+                    <p>Status: {{ usuario.status }}</p>
+                    <hr />
+                    <p>Relatorio: {{ usuario.relatorio }}</p>
+
+                    <button
+                      class="btn btn-info tab-btn btn-painel"
+                      mat-button
+                      color="primary"
+                      [routerLink]="['/editar', usuario.id]"
+                    >
+                      Editar
+                    </button>
+
+                    <button
+                      class="btn btn-danger tab-btn btn-painel"
+                      mat-button
+                      color="warn"
+                      (click)="onDelete(usuario.id)"
+                    >
+                      Remover
+                    </button>
+                    <br /><br /><br />
+                  </div>
+              </ul>
+            </a>
+
+            <p
+              class="mat-body-1"
+              style="text-align: center"
+              *ngIf="usuarios.length <= 0 && !estaCarregando"
+            >
+              Nenhum Paciente Cadastrado
+            </p>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </body>
+</html>
