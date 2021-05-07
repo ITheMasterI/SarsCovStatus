@@ -11,9 +11,12 @@ import { LoginPacienteComponent } from './Paciente/login-paciente/login-paciente
 import { CadastroUsuarioComponent } from './painel/usuario-inserir/cadastro-usuario.component';
 import { PainelControleComponent } from './painel/painel-controle/painel-controle.component';
 import {UsuarioAtualizaComponent} from './painel/usuario-atualiza/usuario-atualiza.component';
+import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
+
 
 const routes: Routes = [
 
+  { path: "profile/:idUsuario", component: UsuarioVisualizacaoComponent},
   { path: "editar/:idUsuario", component: UsuarioAtualizaComponent},
   { path: "cadastro-paciente", component: CadastroUsuarioComponent},
   { path: "painel-controle", component: PainelControleComponent},

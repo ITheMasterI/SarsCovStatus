@@ -42,8 +42,8 @@
 }
 
 .nav_tabs {
-  width: 800px;
-  height: 900px;
+  width: 600px;
+  height: auto;
   margin: 100px auto;
   background-color: #fff;
   position: relative;
@@ -59,7 +59,7 @@
 
 .tab_label {
   display: block;
-  width: 400px;
+  width: 200;
   background-color: #363b48;
   padding: 25px;
   font-size: 20px;
@@ -79,15 +79,14 @@
 }
 
 .tab-content {
-  border-top: solid 7px #3aafb8;
+  border-top: solid 5px #3aafb8;
   background-color: #fff;
   display: none;
   position: absolute;
+  height: 400px;
+  width: 600px;
   left: 0;
-  object-fit: scale-down;
   overflow-y: scroll;
-  width: 800px;
-  height: 820px;
 }
 
 .rd_tab:checked ~ .tab-content {
@@ -129,9 +128,21 @@
   margin-left: 45px;
 }
 
-.btn-painel {
+.btn-editar {
+  margin-left: 10px;
+}
+
+.select-editar {
   display: inline-block;
   margin-left: 10px;
+}
+
+.label-editar {
+  margin-left: -15px;
+}
+
+.tab-btn {
+  display: inline-block;
 }
 
 .paciente-status {
@@ -142,7 +153,7 @@
   text-align: center;
   width: 430px;
   padding: 10px;
-  margin-left: 185px;
+  margin-left: 80px;
   margin-bottom: 20px;
   object-fit: scale-down;
 }

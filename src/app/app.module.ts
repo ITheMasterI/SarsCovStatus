@@ -16,7 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { PainelService } from "./painel/painel.service";
 import { UsuarioAtualizaComponent } from './painel/usuario-atualiza/usuario-atualiza.component';
 
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule} from
+'@angular/material/progress-spinner';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
 
 
 
@@ -32,7 +36,8 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoginPacienteComponent,
     PainelControleComponent,
     CadastroUsuarioComponent,
-    UsuarioAtualizaComponent
+    UsuarioAtualizaComponent,
+    UsuarioVisualizacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [PainelService],
   bootstrap: [AppComponent]

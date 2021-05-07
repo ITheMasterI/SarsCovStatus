@@ -1,0 +1,73 @@
+<head>
+  <link rel="stylesheet" href="usuario-visualizacao.component.css" />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+
+  <title>Consultar Paciente</title>
+</head>
+<body>
+  <style>
+    body {
+      background-image: url(assets/img/backgroundloginfade.jpg);
+      background-attachment: fixed;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      height: 1000px;
+    }
+  </style>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">
+      <img
+        src="assets/img/Icon.png"
+        width="50"
+        height="50"
+        class="d-inline-block align-top"
+        alt="Ícone"
+      />
+    </a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/chat">Chat</a>
+        </li>
+
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/"
+            >Sair <span class="sr-only">(current)</span></a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="nav_tabs">
+    <ul>
+      <li>
+        <input type="radio" id="tab1" class="rd_tab" name="tabs" checked />
+        <label for="tab1" class="tab_label">Relatório Atual</label>
+        <div class="tab-content">
+          <h2>Relatório Atual</h2>
+          <div class="paciente-status">
+            <p>Nome: {{ usuario.nome }}</p>
+            <hr />
+            <p>CPF: {{ usuario.cpf }}</p>
+            <hr />
+            <p>E-mail: {{ usuario.email }}</p>
+            <hr />
+            <p>Status: {{ usuario.status }}</p>
+            <hr />
+            <p>Relatorio: {{ usuario.relatorio }} </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</body>
+

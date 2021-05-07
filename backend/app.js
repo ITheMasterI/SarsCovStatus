@@ -89,6 +89,31 @@ app.delete ('/api/usuarios/:id', (req, res, next) => {
   })
 
 
+//-----------------------------Implementando Chat Real-time-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = app;
 
 
