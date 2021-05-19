@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CadastroComponent } from './Hospital/cadastro/cadastro.component';
 import { LoginComponent } from './Hospital/login/login.component';
-import { LoginPacienteComponent } from './Paciente/login-paciente/login-paciente.component';
+import { LoginPacienteComponent } from './painel/Paciente/login-paciente/login-paciente.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PainelControleComponent } from './painel/painel-controle/painel-controle.component';
 import { CadastroUsuarioComponent } from './painel/usuario-inserir/cadastro-usuario.component';
@@ -21,10 +21,11 @@ import { MatProgressSpinnerModule} from
 import {MatExpansionModule} from '@angular/material/expansion';
 
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
+import { ChatComponent } from './painel/chat/chat.component';
+import { AuthHospitalService } from './Hospital/auth-hospital.service';
 
-
-
-
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usua
     PainelControleComponent,
     CadastroUsuarioComponent,
     UsuarioAtualizaComponent,
-    UsuarioVisualizacaoComponent
+    UsuarioVisualizacaoComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usua
     HttpClientModule,
     MatProgressSpinnerModule,
   ],
-  providers: [PainelService],
+  providers: [PainelService, AuthHospitalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

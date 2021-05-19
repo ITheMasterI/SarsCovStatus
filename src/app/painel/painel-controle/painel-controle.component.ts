@@ -14,9 +14,8 @@ export class PainelControleComponent implements OnInit, OnDestroy {
   usuarios:Usuario[] = [];
   private usuariosSubscription!: Subscription;
 
-//--------
+
 public estaCarregando: boolean = false;
-//--------
 
   constructor(public painelService: PainelService) { }
 
@@ -26,9 +25,8 @@ public estaCarregando: boolean = false;
 
   ngOnInit(): void {
 
- //----------
 this.estaCarregando = true;
-//-------
+
 
 
     this.painelService.getUsuarios();
@@ -37,9 +35,7 @@ this.estaCarregando = true;
       .subscribe((usuarios: Usuario[]) => {
 
 
-        //------
         this.estaCarregando = false;
-        //----
 
 
         this.usuarios = usuarios;

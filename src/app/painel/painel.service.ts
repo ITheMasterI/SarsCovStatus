@@ -78,8 +78,6 @@ export class PainelService {
     }
 
 
-//adicionar daqui pra baixo
-
 getUsuario (idUsuario: any){
 
   return this.httpClient.get<{usuario: Usuario}>
@@ -99,4 +97,17 @@ atualizarUsuario (id: string, nome: string, cpf: string, email: string, status: 
     this.router.navigate(['/painel-controle']);
   }));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

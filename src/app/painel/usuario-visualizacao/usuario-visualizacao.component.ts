@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PainelService } from '../painel.service';
+import { AuthHospitalService } from '../../Hospital/auth-hospital.service'
+import { Hospital } from '../../Hospital/auth-hospital.model'
+import { Subscription } from 'rxjs';
 
 
 
@@ -9,22 +12,39 @@ import { PainelService } from '../painel.service';
   templateUrl: './usuario-visualizacao.component.html',
   styleUrls: ['./usuario-visualizacao.component.css']
 })
-export class UsuarioVisualizacaoComponent implements OnInit {
+export class UsuarioVisualizacaoComponent implements OnInit, OnDestroy {
 
   private idUsuario: any;
   public usuario: any;
   public estaCarregando: boolean = false;
+
+  //------------------
+
+public hospital: any;
+
+hospitais:Hospital[] = [];
+private hospitaisSubscription!: Subscription;
+  //-------------------
 
 
 
 
 constructor(
 public painelService: PainelService,
+public authHospitalService: AuthHospitalService,
 public route: ActivatedRoute
 
   ) { }
 
-  ngOnInit(){
+
+  ngOnDestroy(): void {
+    this.hospitaisSubscription.unsubscribe();
+  }
+
+
+
+
+  ngOnInit():void{
 
     this.route.paramMap.subscribe((paramMap: ParamMap) =>{
 
@@ -46,6 +66,30 @@ public route: ActivatedRoute
         }
       });
     });
+
+//--------------------------------------------------
+
+
+this.authHospitalService.getHospitais();
+    this.hospitaisSubscription = this.authHospitalService
+      .getListaDeHospitaisAtualizadaObservable()
+      .subscribe((hospitais: Hospital[]) => {
+
+
+        this.estaCarregando = false;
+
+
+        this.hospitais = hospitais;
+      });
+
+
+
+
+
+
+
+
+
   }
 
 
