@@ -5,12 +5,22 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-
 @Injectable({ providedIn: 'root'})
 export class PainelService {
   private usuarios: Usuario[] = [];
   private listaUsuariosAtualizada = new Subject<Usuario[]>();
 
+
+  private token: string;
+  private authStatusSubject = new Subject<boolean>();
+
+  public getToken(): string{
+    return this.token;
+  }
+
+  public getStatusSubject(){
+    return this.authStatusSubject.asObservable();
+  }
 
 
   //adicionando private router: Router
@@ -101,6 +111,25 @@ atualizarUsuario (id: string, nome: string, cpf: string, email: string, status: 
 
 
 
+
+login (id: string, nome: string, cpf: string, email: string, status: string, relatorio: string){
+  const usuario: Usuario = {
+
+    _id: id,
+    nome: nome,
+    cpf: cpf,
+    email: email,
+    status: status,
+    relatorio: relatorio
+
+  }
+  this.httpClient.post<{token: string}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
+  this.token = resposta.token;
+  this.authStatusSubject.next(true);
+  //console.log(resposta);
+  this.router.navigate(["/profile", usuario._id]);
+  });
+  }
 
 
 

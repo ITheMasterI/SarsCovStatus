@@ -17,7 +17,11 @@ const Usuario = require('./models/usuario');
 const Hospital = require ('./models/hospital');
 
 
+const checkAuth = require ('./middleware/check-auth');
+
+
 const { ConsoleReporter } = require('jasmine');
+const { response } = require('express');
 const user_db = process.env.MONGODB_USER;
 const pass_db = process.env.MONGODB_PASSWORD;
 const cluster_db = process.env.MONGODB_CLUSTER;
@@ -33,7 +37,8 @@ mongoose.connect(`mongodb+srv://${user_db}:${pass_db}@${cluster_db}.mongodb.net/
 
 
 
-app.post('/api/usuarios', (req, res, next) => {
+//aq
+app.post('/api/usuarios', checkAuth, (req, res, next) => {
   const usuario = new Usuario({
     nome: req.body.nome,
     cpf: req.body.cpf,
@@ -60,8 +65,8 @@ app.get('/api/usuarios', (req, res, next) => {
   })
 });
 
-
-app.delete ('/api/usuarios/:id', (req, res, next) => {
+//aq
+app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
   Usuario.deleteOne ({_id: req.params.id}).then((resultado) => {
   console.log (resultado);
   res.status(200).json({mensagem: "Paciente removido"})
@@ -70,9 +75,9 @@ app.delete ('/api/usuarios/:id', (req, res, next) => {
 
 
 
+//aq
 
-
-  app.get("/api/usuarios/:id", (req, res, next) =>{
+  app.get("/api/usuarios/:id",  (req, res, next) =>{
 
     Usuario.findOne({_id: req.params.id}).then((resultado) => {
       console.log (resultado);
@@ -83,7 +88,8 @@ app.delete ('/api/usuarios/:id', (req, res, next) => {
     });
 
 
-  app.put('/api/usuarios/:id', (req, res, next) => {
+//aq
+  app.put('/api/usuarios/:id', checkAuth, (req, res, next) => {
     const usuario = new Usuario({
       _id: req.params.id,
       nome: req.body.nome,
@@ -102,30 +108,11 @@ app.delete ('/api/usuarios/:id', (req, res, next) => {
   })
 
 
+
+
+
+
 //----------------------Sistema de autenticação-----------------
-
-/*
-  app.post('/api/hospitais/cadastro', (req, res, next) => {
-    const hospital = new Hospital({
-      nome: req.body.nome,
-      cnpj: req.body.cnpj,
-      cep: req.body.cep,
-      endereco: req.body.endereco,
-      estado: req.body.estado,
-      telefone: req.body.telefone,
-      email: req.body.email,
-      senha: req.body.senha,
-    })
-    hospital.save().
-    then (hospitalInserido => {
-    res.status(201).json({
-    mensagem: 'Hospital inserido',
-    id: hospitalInserido._id
-    })
-    })
-  });
-
-*/
 
 
   app.post('/api/hospitais/cadastro', (req, res, next) => {
@@ -188,8 +175,40 @@ app.delete ('/api/usuarios/:id', (req, res, next) => {
       })
       })
 
+
+
+
 //criar um login para usuario
 
+
+app.post('/api/usuarios/login', (req, res, next) => {
+  let pacienteUser;
+  Usuario.findOne({ cpf: req.body.cpf }).then(k => {
+    pacienteUser = k;
+    if (!k) {
+    return res.status(401).json({
+    mensagem: "cpf inválido"
+    })
+    }
+    else if(!k){
+      return res.status(401).json({
+        mensagem: "id inválido"
+        })
+    }
+    const token = jwt.sign(
+      {cpf: pacienteUser.cpf, id: pacienteUser._id},
+      'meuid',
+      {expiresIn: '1h'}
+    )
+    res.status(200).json({token: token})
+
+    })
+    .catch(err => {
+      return res.status(401).json({
+        mensagem: "Login falhou" + err
+      })
+    })
+    })
 
 
 module.exports = app;

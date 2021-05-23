@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+
 
     <link rel="stylesheet" href="login-paciente.component.css" />
     <link
@@ -26,7 +22,8 @@
         height: 1000px;
       }
     </style>
-    <form>
+
+
         <button
           class="btn-navgation"
           type="button"
@@ -39,16 +36,24 @@
     <div class="wrapper">
         <h2 class="wrapper-title" align="center">Faça Login!</h2>
       <hr />
+
+
       <form autocomplete="on">
         <div class="form-row">
+
+          <a *ngIf="estaCarregando"></a>
+
+<form (submit)="onLoginPaciente(loginPacienteForm)" #loginPacienteForm="ngForm" *ngIf="!estaCarregando">
+
+
           <div class="form-group col-md-6">
-            <label for="id">Código de Login</label>
-            <input type="text" class="form-control" name="id" id="id" />
+            <label for="idInput">Código de Login</label>
+            <input type="text" class="form-control" name="id" size="1000" ngModel #idInput="ngModel" id="idInput"/>
           </div>
 
           <div class="form-group">
-            <label for="cpf">CPF</label>
-            <input type="text" class="form-control" name="cpf" id="cpf" />
+            <label for="cpfInput">CPF</label>
+            <input type="text" class="form-control" name="cpf" ngModel #cpfInput="ngModel" id="cpfInput" />
           </div>
 
       <br>
@@ -58,11 +63,10 @@
       <button type="submit" class="btn btn-success btn-lg btn-block">
         Entrar
       </button>
-    </div>
 
+    </form>
+    </div>
 </form>
 </div>
-</form>
-
   </body>
-</html>
+
