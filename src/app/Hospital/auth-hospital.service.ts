@@ -14,7 +14,6 @@ export class AuthHospitalService {
   private hospitais: Hospital[] = [];
   private listaHospitaisAtualizada = new Subject<Hospital[]>();
 
-//-------------
 
 private token: string;
 private authStatusSubject = new Subject<boolean>();
@@ -27,7 +26,12 @@ public getStatusSubject(){
   return this.authStatusSubject.asObservable();
 }
 
-//--------------
+private autenticado: boolean = false;
+
+public isAutenticado(): boolean{
+  return this.autenticado;
+}
+
 
 
   constructor(private httpClient: HttpClient, private router: Router){
@@ -95,18 +99,26 @@ getListaDeHospitaisAtualizadaObservable(){
     cep: cep,
     email: email,
     senha: senha
-    }//add token
+    }
     this.httpClient.post<{token: string}>("http://localhost:3000/api/hospitais/login", hospital).subscribe(resposta => {
     this.token = resposta.token;
-    this.authStatusSubject.next(true);
-    //console.log(resposta);
+    if(this.token){
+      this.autenticado = true;
+      this.authStatusSubject.next(true);
+
+    }
+
     this.router.navigate(["/painel-controle"]);
     });
     }
 
 
 
-
+logout(){
+  this.token = null;
+  this.authStatusSubject.next(false);
+  this.router.navigate(['/'])
+}
 
 
 

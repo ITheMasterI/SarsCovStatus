@@ -44,7 +44,9 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/">Sair</a>
+            <a *ngIf="autenticado">
+            <a class="nav-link" (click)="onLogout()">Sair</a>
+          </a>
           </li>
         </ul>
       </div>
@@ -60,6 +62,7 @@
           <div class="tab-content">
             <h2>Cadastrar</h2>
             <article>
+              <a *ngIf="autenticado">
               <a class="btn-add" routerLink="/cadastro-paciente">
                 <img
                   width="50px"
@@ -67,6 +70,7 @@
                   src="assets/img/add_icon.png"
                   alt=""
                 />
+              </a>
               </a>
             </article>
           </div>
@@ -98,6 +102,7 @@
                     <hr />
                     <p>Relatorio: {{ usuario.relatorio }}</p>
 
+                    <a *ngIf="autenticado">
                     <button
                       class="btn btn-info tab-btn btn-painel"
                       mat-button
@@ -130,7 +135,7 @@
 
                     </button>
 
-
+                  </a>
 
                     <br /><br /><br />
                   </div>

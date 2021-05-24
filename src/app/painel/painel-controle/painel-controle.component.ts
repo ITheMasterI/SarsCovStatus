@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { Usuario } from '../painel.model';
 import { PainelService } from '../painel.service';
+import { AuthHospitalService } from '../../Hospital/auth-hospital.service';
 
 
 @Component({
@@ -14,13 +15,16 @@ export class PainelControleComponent implements OnInit, OnDestroy {
   usuarios:Usuario[] = [];
   private usuariosSubscription!: Subscription;
 
-
 public estaCarregando: boolean = false;
 
-  constructor(public painelService: PainelService) { }
+private authObserve: Subscription;
+public autenticado: boolean = false;
+
+constructor(private painelService: PainelService, private authHospitalService: AuthHospitalService) { }
 
   ngOnDestroy(): void {
     this.usuariosSubscription.unsubscribe();
+    this.authObserve.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -40,10 +44,19 @@ this.estaCarregando = true;
 
         this.usuarios = usuarios;
       });
+
+      this.autenticado = this.authHospitalService.isAutenticado();
+      this.authObserve = this.authHospitalService.getStatusSubject().subscribe((autenticado) =>{
+        this.autenticado = autenticado;
+      })
   }
 
   onDelete (id: string): void{
     this.painelService.removerUsuario(id);
+    }
+
+    onLogout(){
+      this.authHospitalService.logout();
     }
 
 }

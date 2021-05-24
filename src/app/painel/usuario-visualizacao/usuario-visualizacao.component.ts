@@ -18,20 +18,21 @@ export class UsuarioVisualizacaoComponent implements OnInit, OnDestroy {
   public usuario: any;
   public estaCarregando: boolean = false;
 
-  //------------------
+
 
 public hospital: any;
 
 hospitais:Hospital[] = [];
 private hospitaisSubscription!: Subscription;
-  //-------------------
 
 
+private authObserver: Subscription;
+public autenticado: boolean = false;
 
 
 constructor(
-public painelService: PainelService,
-public authHospitalService: AuthHospitalService,
+private painelService: PainelService,
+private authHospitalService: AuthHospitalService,
 public route: ActivatedRoute
 
   ) { }
@@ -39,6 +40,7 @@ public route: ActivatedRoute
 
   ngOnDestroy(): void {
     this.hospitaisSubscription.unsubscribe();
+    this.authObserver.unsubscribe();
   }
 
 
@@ -67,7 +69,6 @@ public route: ActivatedRoute
       });
     });
 
-//--------------------------------------------------
 
 
 this.authHospitalService.getHospitais();
@@ -82,17 +83,18 @@ this.authHospitalService.getHospitais();
         this.hospitais = hospitais;
       });
 
+    this.autenticado = this.painelService.isAutenticado();
 
-
-
-
-
-
+    this.authObserver =
+    this.painelService.getStatusSubject().
+    subscribe((autenticado) => {
+    this.autenticado = autenticado;
+    })
 
 
   }
 
-
-
-
+  onLogout(){
+    this.painelService.logout();
+  }
 }

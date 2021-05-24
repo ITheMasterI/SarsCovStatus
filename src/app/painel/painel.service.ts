@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 
 @Injectable({ providedIn: 'root'})
 export class PainelService {
@@ -21,6 +22,15 @@ export class PainelService {
   public getStatusSubject(){
     return this.authStatusSubject.asObservable();
   }
+
+
+
+private autenticado: boolean = false;
+
+public isAutenticado(): boolean{
+  return this.autenticado;
+}
+
 
 
   //adicionando private router: Router
@@ -125,14 +135,21 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
   }
   this.httpClient.post<{token: string}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
   this.token = resposta.token;
-  this.authStatusSubject.next(true);
-  //console.log(resposta);
+  if(this.token){
+    this.autenticado = true;
+    this.authStatusSubject.next(true);
+  }
+
   this.router.navigate(["/profile", usuario._id]);
   });
   }
 
 
-
+  logout(){
+    this.token = null;
+    this.authStatusSubject.next(false);
+    this.router.navigate(['/'])
+  }
 
 
 
