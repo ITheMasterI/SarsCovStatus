@@ -47,7 +47,7 @@ this.estaCarregando = true;
 
       this.autenticado = this.authHospitalService.isAutenticado();
       this.authObserve = this.authHospitalService.getStatusSubject().subscribe((autenticado) =>{
-        this.autenticado = autenticado;
+      this.autenticado = autenticado;
       })
   }
 

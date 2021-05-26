@@ -21,7 +21,7 @@ import { MatProgressSpinnerModule} from
 import {MatExpansionModule} from '@angular/material/expansion';
 
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
-import { ChatComponent } from './painel/chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
 import { AuthHospitalService } from './Hospital/auth-hospital.service';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';

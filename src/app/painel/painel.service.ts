@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from './painel.model';
-import { Subject } from 'rxjs';
+import { from, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
+import { Hospital } from '../Hospital/auth-hospital.model'
 
 @Injectable({ providedIn: 'root'})
 export class PainelService {

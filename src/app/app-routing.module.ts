@@ -12,7 +12,7 @@ import { CadastroUsuarioComponent } from './painel/usuario-inserir/cadastro-usua
 import { PainelControleComponent } from './painel/painel-controle/painel-controle.component';
 import {UsuarioAtualizaComponent} from './painel/usuario-atualiza/usuario-atualiza.component';
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
-import { ChatComponent } from './painel/chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
