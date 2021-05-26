@@ -22,6 +22,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
 import { ChatComponent } from './chat/chat.component';
+import { WebSocketService } from './chat/services/web-socket.service'
 import { AuthHospitalService } from './Hospital/auth-hospital.service';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -50,7 +51,7 @@ import {AuthInterceptor} from './Hospital/auth-interceptor'
     HttpClientModule,
     MatProgressSpinnerModule,
   ],
-  providers: [//PainelService, AuthHospitalService,
+  providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

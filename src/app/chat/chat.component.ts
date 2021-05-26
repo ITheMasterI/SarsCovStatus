@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { WebSocketService } from './services/web-socket.service'
 
 
 @Component({
@@ -6,14 +8,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy{
 
 
 
+constructor(){}
 
-  ngOnInit() {
 
-  }
+
+ngOnDestroy(){
+
+}
+
+
+ngOnInit(){
+
+}
+
 
 
 }

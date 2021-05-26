@@ -38,30 +38,29 @@
           </div>
           <div class="title">Chat</div>
       </div>
+
       <ul id ="messages" class="messages">
 
       </ul>
 
+
+
       <div class="bottom_wrapper clearfix">
      <i id="typing"></i>
+
+
       <form id="form">
           <div class="message_input_wrapper">
-              <input id="message" class="message_input" placeholder="Type your message here..." />
+              <input id="message" name="message" class="message_input" placeholder="Type your message here..." ngModel/>
           </div>
-          <button class="send_message">
+          <button class="send_message" type="submit">
              Send
           </button>
         </form>
+
       </div>
+
+
   </div>
-
-      <script src="./chat.js"></script>
-      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/gh/rexeze/formatTimeStamp/src/index-cdn.js"></script>
-
-
-
-
-
   </body>
 

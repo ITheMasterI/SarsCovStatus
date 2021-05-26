@@ -37,7 +37,7 @@ mongoose.connect(`mongodb+srv://${user_db}:${pass_db}@${cluster_db}.mongodb.net/
 
 
 
-//aq
+
 app.post('/api/usuarios', checkAuth, (req, res, next) => {
   const usuario = new Usuario({
     nome: req.body.nome,
@@ -65,7 +65,7 @@ app.get('/api/usuarios', (req, res, next) => {
   })
 });
 
-//aq
+
 app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
   Usuario.deleteOne ({_id: req.params.id}).then((resultado) => {
   console.log (resultado);
@@ -75,7 +75,6 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
 
 
 
-//aq
 
   app.get("/api/usuarios/:id",  (req, res, next) =>{
 
@@ -88,7 +87,7 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
     });
 
 
-//aq
+
   app.put('/api/usuarios/:id', checkAuth, (req, res, next) => {
     const usuario = new Usuario({
       _id: req.params.id,
@@ -209,6 +208,13 @@ app.post('/api/usuarios/login', (req, res, next) => {
       })
     })
     })
+
+
+
+    //---------------Implementando chat real time-----------------
+
+
+
 
 
 module.exports = app;
