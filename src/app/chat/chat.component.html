@@ -1,3 +1,4 @@
+
   <head>
 
     <link rel="stylesheet" href="chat.component.css" />
@@ -8,7 +9,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Chat</title>
+    <title>Painel de Controle</title>
   </head>
   <body>
     <style>
@@ -20,47 +21,21 @@
         height: 1500px;
       }
     </style>
-        <button
-        class="btn-navgation"
-        type="button"
-        value="Voltar"
-        onClick="history.go(-1)"
-      >
-        <img src="assets/img/back_icon.png" width="75px" alt="" />
-      </button>
+       <button
+       class="btn-navgation"
+       type="button"
+       value="Voltar"
+       onClick="history.go(-1)"
+     >
+       <img src="assets/img/back_icon.png" width="75px" alt="" />
+     </button>
 
-     <div class="chat_window">
-      <div class="top_menu">
-          <div class="buttons">
-              <div class="button close"></div>
-              <div class="button minimize"></div>
-              <div class="button maximize"></div>
-          </div>
-          <div class="title">Chat</div>
+
+
+    <div class="chat-content">
+      <div class="chat-send">
+        <input placeholder="Digite sua mensagem!" class="message" maxlength="100" type="text" name="" id="" ngModel/>
+        <button class="btn btn-success" type="submit">Enviar</button>
       </div>
-
-      <ul id ="messages" class="messages">
-
-      </ul>
-
-
-
-      <div class="bottom_wrapper clearfix">
-     <i id="typing"></i>
-
-
-      <form id="form">
-          <div class="message_input_wrapper">
-              <input id="message" name="message" class="message_input" placeholder="Type your message here..." ngModel/>
-          </div>
-          <button class="send_message" type="submit">
-             Send
-          </button>
-        </form>
-
-      </div>
-
-
-  </div>
+    </div>
   </body>
-

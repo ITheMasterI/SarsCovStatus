@@ -18,16 +18,16 @@ import { UsuarioAtualizaComponent } from './painel/usuario-atualiza/usuario-atua
 
 import { MatProgressSpinnerModule} from
 '@angular/material/progress-spinner';
-import {MatExpansionModule} from '@angular/material/expansion';
+
 
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
 import { ChatComponent } from './chat/chat.component';
-import { WebSocketService } from './chat/services/web-socket.service'
+
 import { AuthHospitalService } from './Hospital/auth-hospital.service';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 import {AuthInterceptor} from './Hospital/auth-interceptor'
+import { SocketioService } from './socketio.service';
 
 
 @NgModule({
@@ -49,10 +49,11 @@ import {AuthInterceptor} from './Hospital/auth-interceptor'
     NgbModule,
     FormsModule,
     HttpClientModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    SocketioService
   ],
   bootstrap: [AppComponent]
 })

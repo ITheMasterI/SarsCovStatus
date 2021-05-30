@@ -5,23 +5,18 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 app.use(cors());
 app.use(express.json());
-
-
-
 const bcrypt = require ('bcrypt');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-
-
 const Usuario = require('./models/usuario');
 const Hospital = require ('./models/hospital');
-
-
 const checkAuth = require ('./middleware/check-auth');
-
-
 const { ConsoleReporter } = require('jasmine');
 const { response } = require('express');
+
+
+
+
 const user_db = process.env.MONGODB_USER;
 const pass_db = process.env.MONGODB_PASSWORD;
 const cluster_db = process.env.MONGODB_CLUSTER;
@@ -36,21 +31,27 @@ mongoose.connect(`mongodb+srv://${user_db}:${pass_db}@${cluster_db}.mongodb.net/
 
 
 
-
-
 app.post('/api/usuarios', checkAuth, (req, res, next) => {
   const usuario = new Usuario({
     nome: req.body.nome,
     cpf: req.body.cpf,
     email: req.body.email,
     status: req.body.status,
-    relatorio: req.body.relatorio
+    relatorio: req.body.relatorio,
+    criador: req.dadosHospital.idHospital
   })
   usuario.save().
   then (usuarioInserido => {
   res.status(201).json({
   mensagem: 'Paciente inserido',
-  id: usuarioInserido._id
+  usuario:{
+    id: usuarioInserido._id,
+    nome: usuarioInserido.nome,
+    cpf: usuarioInserido.cpf,
+    email: usuarioInserido.email,
+    status: usuarioInserido.status,
+    relatorio: usuarioInserido.relatorio
+  }
   })
   })
 });
@@ -111,6 +112,7 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
 
 
 
+
 //----------------------Sistema de autenticação-----------------
 
 
@@ -165,7 +167,9 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
           'minhasenha',
           {expiresIn: '1h'}
         )
-        res.status(200).json({token: token})
+        res.status(200).json({token: token,
+        expiresIn: 3600
+        })
       })
       .catch(err => {
         return res.status(401).json({
@@ -176,8 +180,6 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
 
 
 
-
-//criar um login para usuario
 
 
 app.post('/api/usuarios/login', (req, res, next) => {
@@ -196,7 +198,7 @@ app.post('/api/usuarios/login', (req, res, next) => {
     }
     const token = jwt.sign(
       {cpf: pacienteUser.cpf, id: pacienteUser._id},
-      'meuid',
+      'minhasenha',
       {expiresIn: '1h'}
     )
     res.status(200).json({token: token})
@@ -209,9 +211,6 @@ app.post('/api/usuarios/login', (req, res, next) => {
     })
     })
 
-
-
-    //---------------Implementando chat real time-----------------
 
 
 

@@ -6,7 +6,8 @@ const usuarioSchema = mongoose.Schema({
   cpf: {type: String, required: true},
   email: {type: String, required: true},
   status: {type: String, required: true},
-  relatorio: {type: String, required: true}
+  relatorio: {type: String, required: true},
+  criador: {type: mongoose.Schema.Types.ObjectId, ref: "Hospital", required: true}
 });
 
 

@@ -1,29 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { WebSocketService } from './services/web-socket.service'
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SocketioService } from '../socketio.service';
+
 
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit, OnDestroy{
+export class ChatComponent implements OnInit{
+
+  constructor(private socketioService: SocketioService) { }
+
+  ngOnInit(): void {
+    this.socketioService.setupSocketConnection();
+
+  }
 
 
 
-constructor(){}
 
-
-
-ngOnDestroy(){
-
-}
-
-
-ngOnInit(){
-
-}
 
 
 

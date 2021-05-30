@@ -13,16 +13,15 @@ import { PainelControleComponent } from './painel/painel-controle/painel-control
 import {UsuarioAtualizaComponent} from './painel/usuario-atualiza/usuario-atualiza.component';
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
 import { ChatComponent } from './chat/chat.component';
+import { AuthGuard } from './Hospital/auth.guard'
 
 
 const routes: Routes = [
-
-  { path: "chat/:nomeUsuario", component: ChatComponent},
-  { path: "chat/:nomeHospital", component: ChatComponent},
+  { path: "chat", component: ChatComponent},
   { path: "profile/:idUsuario", component: UsuarioVisualizacaoComponent},
-  { path: "editar/:idUsuario", component: UsuarioAtualizaComponent},
-  { path: "cadastro-paciente", component: CadastroUsuarioComponent},
-  { path: "painel-controle", component: PainelControleComponent},
+  { path: "editar/:idUsuario", component: UsuarioAtualizaComponent, canActivate: [AuthGuard]},
+  { path: "cadastro-paciente", component: CadastroUsuarioComponent, canActivate: [AuthGuard]},
+  { path: "painel-controle", component: PainelControleComponent, canActivate: [AuthGuard]},
   { path: "login-paciente", component: LoginPacienteComponent},
   { path: "cadastro", component: CadastroComponent},
   { path: "login", component: LoginComponent},
@@ -33,6 +32,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
