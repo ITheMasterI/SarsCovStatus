@@ -13,7 +13,7 @@ import { PainelControleComponent } from './painel/painel-controle/painel-control
 import { CadastroUsuarioComponent } from './painel/usuario-inserir/cadastro-usuario.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PainelService } from "./painel/painel.service";
+
 import { UsuarioAtualizaComponent } from './painel/usuario-atualiza/usuario-atualiza.component';
 
 import { MatProgressSpinnerModule} from
@@ -23,9 +23,6 @@ import { MatProgressSpinnerModule} from
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
 import { ChatComponent } from './chat/chat.component';
 
-import { AuthHospitalService } from './Hospital/auth-hospital.service';
-
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {AuthInterceptor} from './Hospital/auth-interceptor'
 import { SocketioService } from './socketio.service';
 

@@ -33,9 +33,22 @@
 
 
     <div class="chat-content">
+
+      <div id="output" *ngFor="let data of output">
+        <p><strong>{{data.handle}} : </strong>{{data.message}}</p>
+    </div>
+
       <div class="chat-send">
-        <input placeholder="Digite sua mensagem!" class="message" maxlength="100" type="text" name="" id="" ngModel/>
-        <button class="btn btn-success" type="submit">Enviar</button>
+        <input placeholder="Digite sua mensagem!" class="message" maxlength="100" type="text" id="message" autocomplete="off" [(ngModel)]="message" (keypress)="messageTyping()"/>
+
+        <div id="feedback"><p>{{feedback}}</p>
+        </div>
+
+        <input id="handle" type="text" [(ngModel)]="userName" placeholder="Handle" />
+
+        <button class="btn btn-success" type="button" id="send"  (click)="sendMessage()">Enviar</button>
+
       </div>
     </div>
+
   </body>

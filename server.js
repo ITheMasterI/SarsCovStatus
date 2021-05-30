@@ -12,24 +12,29 @@ const io = require('socket.io')(server, {
 });
 
 
-io.use((socket, next) => {
-  const token = socket.handshake.auth.token;
-  console.log('token', token);
-  next();
+
+  io.on('connection', (socket) => {
+
+    console.log(`New connection ${socket.id}`)
+
+    socket.on('disconnect', () => {
+      console.log(`Usuário desconectado ${socket.id}`);
+    });
+
+
+    socket.on('chat', function(data){
+      io.sockets.emit('chat', data);
+  });
+
+
+  socket.on('typing', function(data){
+    io.sockets.emit('typing', data);
+
+});
+
 });
 
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-
-  socket.on('my message', (msg) => {
-    console.log('message: ' + msg);
-    io.emit('my broadcast', `server: ${msg}`);
-  });
-});
 
 server.listen(port);
