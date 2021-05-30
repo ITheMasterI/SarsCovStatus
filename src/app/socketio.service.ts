@@ -11,7 +11,10 @@ export class SocketioService {
 
   socket;
 
-  constructor() { }
+
+  constructor(){
+
+  }
 
 setupSocketConnection(){
   this.socket = io(environment.SOCKET_ENDPOINT);
@@ -28,6 +31,10 @@ listen(eventname: string) : Observable<any> {
 emit(eventname: string, data: any) {
   this.socket.emit(eventname, data);
 }
+
+
+
+
 
 }
 

@@ -9,7 +9,8 @@ const bcrypt = require ('bcrypt');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const Usuario = require('./models/usuario');
-const Hospital = require ('./models/hospital');
+const Hospital = require('./models/hospital');
+const Chat = require('./models/chat');
 const checkAuth = require ('./middleware/check-auth');
 const { ConsoleReporter } = require('jasmine');
 const { response } = require('express');
@@ -106,6 +107,17 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
     });
     res.status(200).json({mensagem: 'Atualização realizada com sucesso'});
   })
+
+//----------------------Chat Real-Time-------------------------
+
+
+
+
+
+
+
+
+
 
 
 

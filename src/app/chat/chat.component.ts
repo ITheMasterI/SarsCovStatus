@@ -1,8 +1,6 @@
 import { Component, OnInit} from '@angular/core';
+import { AuthHospitalService } from '../Hospital/auth-hospital.service';
 import { SocketioService } from '../socketio.service';
-
-
-
 
 
 @Component({
@@ -17,7 +15,7 @@ export class ChatComponent implements OnInit{
   output: any[] = [];
   feedback: string;
 
-  constructor(private socketioService: SocketioService) { }
+  constructor(private socketioService: SocketioService, public authhospitalService: AuthHospitalService) { }
 
   ngOnInit():void {
     this.socketioService.setupSocketConnection();

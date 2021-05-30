@@ -9,6 +9,8 @@
       crossorigin="anonymous"
     />
 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
     <title>Painel de Controle</title>
   </head>
   <body>
@@ -30,25 +32,45 @@
        <img src="assets/img/back_icon.png" width="75px" alt="" />
      </button>
 
+     <div class="chat_window">
+      <div class="top_menu">
+          <div class="buttons">
+              <div class="button close"></div>
+              <div class="button minimize"></div>
+              <div class="button maximize"></div>
+          </div>
+          <div class="title">Chat</div>
+      </div>
 
 
-    <div class="chat-content">
+      <ul id ="messages" class="messages">
 
-      <div id="output" *ngFor="let data of output">
-        <p><strong>{{data.handle}} : </strong>{{data.message}}</p>
-    </div>
+        <div id="output" *ngFor="let data of output">
+          <p>{{data.message}}</p>
+      </div>
 
-      <div class="chat-send">
-        <input placeholder="Digite sua mensagem!" class="message" maxlength="100" type="text" id="message" autocomplete="off" [(ngModel)]="message" (keypress)="messageTyping()"/>
+      </ul>
 
+
+
+
+      <div class="bottom_wrapper clearfix">
         <div id="feedback"><p>{{feedback}}</p>
         </div>
 
-        <input id="handle" type="text" [(ngModel)]="userName" placeholder="Handle" />
 
-        <button class="btn btn-success" type="button" id="send"  (click)="sendMessage()">Enviar</button>
+
+          <div class="message_input_wrapper">
+
+              <input placeholder="Digite sua mensagem!" class="message_input" type="text" id="message" autocomplete="off" [(ngModel)]="message" (keypress)="messageTyping()"/>
+          </div>
+
+
+          <button class="send_message" type="button" id="send" (click)="sendMessage()">Enviar</button>
 
       </div>
-    </div>
+      <div id="message"></div>
+  </div>
 
-  </body>
+
+    </body>

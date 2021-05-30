@@ -2,8 +2,10 @@ const http = require('http');
 const app = require('./backend/app');
 const port = process.env.PORT || 3000;
 
+
 app.set('port', port);
 const server = http.createServer(app);
+
 
 const io = require('socket.io')(server, {
   cors: {
@@ -14,6 +16,7 @@ const io = require('socket.io')(server, {
 
 
   io.on('connection', (socket) => {
+
 
     console.log(`New connection ${socket.id}`)
 
@@ -33,8 +36,6 @@ const io = require('socket.io')(server, {
 });
 
 });
-
-
 
 
 server.listen(port);
