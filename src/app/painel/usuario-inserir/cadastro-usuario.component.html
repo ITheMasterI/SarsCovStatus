@@ -44,7 +44,7 @@
             <div class="form-group col-md-6">
               <label for="nomeInput">Nome</label>
               <input type="text" size="100" class="form-control" placeholder="Nome" name="nome" id="nome"
-               ngModel>
+              autocomplete="off" ngModel>
             </div>
 
 
@@ -53,7 +53,7 @@
 
             <div class="form-group col-md-6">
               <label for="cpfInput">CPF</label>
-              <input type="text" class="form-control" placeholder="CPF" name="cpf" id="cpf"  ngModel>
+              <input type="text" class="form-control" placeholder="CPF" name="cpf" id="cpf"  autocomplete="off" ngModel>
             </div>
 
 
@@ -62,13 +62,13 @@
 
             <div class="form-group col-md-6">
               <label for="emailInput">Email</label>
-              <input type="mail" class="form-control" placeholder="E-mail" name="email" id="email" ngModel>
+              <input type="mail" class="form-control" placeholder="E-mail" name="email" id="email" autocomplete="off" ngModel>
             </div>
 
             <br>
 
             <label for="statusInput" placeholder="Seleciona uma categoria">Status atual do Paciente:  </label><br>
-            <select id="status" name="status" ngModel>
+            <select id="status" name="status" autocomplete="off" ngModel>
               <option value="Estável ">Estavel</option>
               <option value="Observação ">Observação</option>
               <option value="Risco 🔴 ">Risco 🔴</option>
@@ -81,7 +81,7 @@
             <br>
             <div class="form-group">
               <label for="relatorioInput">Relatório</label>
-              <textarea class="form-control" id="relatorio" name="relatorio" placeholder="Digite o relatório do paciente" rows="5" ngModel></textarea>
+              <textarea class="form-control" id="relatorio" name="relatorio" placeholder="Digite o relatório do paciente" rows="5" autocomplete="off" ngModel></textarea>
             </div>
 
 

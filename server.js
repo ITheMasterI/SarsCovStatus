@@ -1,6 +1,8 @@
 const http = require('http');
+const { UseExistingWebDriver } = require('protractor/built/driverProviders');
 const app = require('./backend/app');
 const port = process.env.PORT || 3000;
+const Chat = require('./backend/models/chat')
 
 
 app.set('port', port);
@@ -17,8 +19,7 @@ const io = require('socket.io')(server, {
 
   io.on('connection', (socket) => {
 
-
-    console.log(`New connection ${socket.id}`)
+    console.log(`New connection ${socket.id}`);
 
     socket.on('disconnect', () => {
       console.log(`Usuário desconectado ${socket.id}`);
@@ -26,6 +27,7 @@ const io = require('socket.io')(server, {
 
 
     socket.on('chat', function(data){
+
       io.sockets.emit('chat', data);
   });
 
@@ -35,7 +37,9 @@ const io = require('socket.io')(server, {
 
 });
 
+
 });
+
 
 
 server.listen(port);

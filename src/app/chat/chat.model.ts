@@ -1,3 +1,3 @@
 export interface Chat{
-message: string;
+mensagem: string;
 }

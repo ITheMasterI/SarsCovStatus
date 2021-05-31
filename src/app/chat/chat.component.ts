@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
-import { AuthHospitalService } from '../Hospital/auth-hospital.service';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { SocketioService } from '../socketio.service';
+import * as io from "socket.io-client";
 
 
 @Component({
@@ -10,17 +10,24 @@ import { SocketioService } from '../socketio.service';
 })
 export class ChatComponent implements OnInit{
 
+
   userName: string;
   message: string;
   output: any[] = [];
   feedback: string;
 
-  constructor(private socketioService: SocketioService, public authhospitalService: AuthHospitalService) { }
+
+
+  constructor(private socketioService: SocketioService) { }
+
+
 
   ngOnInit():void {
     this.socketioService.setupSocketConnection();
     this.socketioService.listen('typing').subscribe((data) => this.updateFeedback(data));
     this.socketioService.listen('chat').subscribe((data) => this.updateMessage(data));
+
+
   }
 
   messageTyping(): void {
@@ -45,6 +52,8 @@ export class ChatComponent implements OnInit{
   updateFeedback(data: any){
     this.feedback = `${data} is typing a message`;
   }
+
+
 
 
 }
