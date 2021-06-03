@@ -24,7 +24,7 @@ export class AppComponent {
 
   ngOnInit(){
   this.authHospitalService.autenticarAutomaticamente();
-  //this.painelService.autenticarAutomaticamente();
+  this.painelService.autenticarAutomaticamente();
   }
 
 

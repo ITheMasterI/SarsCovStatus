@@ -39,7 +39,7 @@
 
 
         <li class="nav-item active">
-          <a *ngIf="Userautenticado">
+          <a *ngIf="autenticado">
           <a class="nav-link" (click)="onLogout()">Sair<span class="sr-only">(current)</span>
           </a>
           </a>
@@ -67,7 +67,7 @@
             <p>Relatorio: {{ usuario.relatorio }} </p>
           </div>
 
-            <a *ngIf="Userautenticado">
+            <a *ngIf="autenticado">
                     <button
 
                     class="btn btn-success tab-btn btn-painel"

@@ -1,4 +1,4 @@
-/*
+
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { PainelService } from '../../painel.service';
@@ -16,5 +16,3 @@ const copia = req.clone({
 }
 }
 
-
-*/

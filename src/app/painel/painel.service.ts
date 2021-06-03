@@ -139,8 +139,8 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
     relatorio: relatorio
 
   }
-  this.httpClient.post<{tokenAuth: string, expiresIn: number}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
-    this.tokenAuth = resposta.tokenAuth;
+  this.httpClient.post<{token: string, expiresIn: number}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
+    this.tokenAuth = resposta.token;
     if(this.tokenAuth){
       const tempoValidadeToken = resposta.expiresIn;
       this.tokenTimer = setTimeout(() => {
@@ -158,14 +158,14 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
     }
 
 
-    private salvarDadosDeAutenticacao (tokenAuth: string, validade: Date, idPaciente: string){
-      localStorage.setItem ('tokenAuth', tokenAuth);
+    private salvarDadosDeAutenticacao (token: string, validade: Date, idPaciente: string){
+      localStorage.setItem ('token', token);
       localStorage.setItem ('validade', validade.toISOString());
       localStorage.setItem ('idPaciente', idPaciente);
     }
 
     private removerDadosDeAutenticacao (){
-      localStorage.removeItem ('tokenAuth');
+      localStorage.removeItem ('token');
       localStorage.removeItem ('validade');
       localStorage.removeItem ('idPaciente');
     }
