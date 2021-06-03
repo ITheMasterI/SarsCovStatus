@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { Injectable } from "@angular/core";
+import { Observable, Subscriber } from "rxjs";
 import { io } from 'socket.io-client'
-import { Observable } from "rxjs";
 
 
 
@@ -11,34 +11,26 @@ import { Observable } from "rxjs";
 })
 export class SocketioService {
 
-  socket;
+  socket: any;
+
+  readonly uri: string = 'ws://localhost:3000'
 
 
-  constructor(){
-
-  }
-
-setupSocketConnection(){
-  this.socket = io(environment.SOCKET_ENDPOINT);
+constructor(){
+  this.socket = io(this.uri)
 }
 
-
-
-listen(eventname: string) : Observable<any> {
+listen(eventName: string){
   return new Observable((subscriber) => {
-      this.socket.on(eventname, (data) => {
-          subscriber.next(data);
-      })
-  })
+    this.socket.on(eventName, (data) => {
+      subscriber.next(data);
+    })
+  });
 }
 
-emit(eventname: string, data: any) {
-  this.socket.emit(eventname, data);
+emit(eventName: string, data: any){
+  this.socket.emit(eventName, data)
 }
-
-
-
-
 
 }
 

@@ -45,9 +45,9 @@
 
       <ul id ="messages" class="messages">
 
-        <div id="output" *ngFor="let data of output">
+        <!-- <div id="output" *ngFor="let data of output">
           <p>{{data.message}}</p>
-      </div>
+      </div> -->
 
       </ul>
 
@@ -55,21 +55,24 @@
 
 
       <div class="bottom_wrapper clearfix">
-        <!-- <div id="feedback"><p>{{feedback}}</p>
+
+        <!-- <div id="feedback">
+        <p>{{feedback}}</p>
         </div> -->
 
 
 
-          <div class="message_input_wrapper">
-
-              <input placeholder="Digite sua mensagem!" class="message_input" type="text" id="message" autocomplete="off" [(ngModel)]="message" (keypress)="messageTyping()"/>
-          </div>
+        <div class="message_input_wrapper">
 
 
-          <button class="send_message" type="button" id="send" (click)="sendMessage()">Enviar</button>
+          <input placeholder="Digite sua mensagem!" class="message_input" type="text" id="message" autocomplete="off"/>
+
 
       </div>
-      <div id="message"></div>
-  </div>
 
-    </body>
+      <button class="send_message" type="button" id="send" >Enviar</button>
+
+  </div>
+  <div id="message"></div>
+</div>
+</body>

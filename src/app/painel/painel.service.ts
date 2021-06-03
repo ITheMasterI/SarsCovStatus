@@ -4,7 +4,7 @@ import { from, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Hospital } from '../Hospital/auth-hospital.model'
+
 
 @Injectable({ providedIn: 'root'})
 export class PainelService {
@@ -12,11 +12,17 @@ export class PainelService {
   private listaUsuariosAtualizada = new Subject<Usuario[]>();
 
 
-  private token: string;
+  private tokenAuth: string;
   private authStatusSubject = new Subject<boolean>();
+  private tokenTimer: NodeJS.Timer;
+  private idPaciente: string;
+
+
+
+
 
   public getToken(): string{
-    return this.token;
+    return this.tokenAuth;
   }
 
   public getStatusSubject(){
@@ -25,10 +31,10 @@ export class PainelService {
 
 
 
-private autenticado: boolean = false;
+private autenticadoUser: boolean = false;
 
 public isAutenticado(): boolean{
-  return this.autenticado;
+  return this.autenticadoUser;
 }
 
 
@@ -133,23 +139,76 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
     relatorio: relatorio
 
   }
-  this.httpClient.post<{token: string}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
-  this.token = resposta.token;
-  if(this.token){
-    this.autenticado = true;
-    this.authStatusSubject.next(true);
-  }
+  this.httpClient.post<{tokenAuth: string, expiresIn: number}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
+    this.tokenAuth = resposta.tokenAuth;
+    if(this.tokenAuth){
+      const tempoValidadeToken = resposta.expiresIn;
+      this.tokenTimer = setTimeout(() => {
+        this.logout()
+      }, tempoValidadeToken * 1000);
+      this.autenticadoUser = true;
+      this.authStatusSubject.next(true);
+      this.salvarDadosDeAutenticacao(this.tokenAuth, new Date(new Date().getTime() + tempoValidadeToken * 1000)
+            , this.idPaciente);
 
-  this.router.navigate(["/profile", usuario._id]);
-  });
-  }
+    }
+
+    this.router.navigate(["/profile", usuario._id]);
+    });
+    }
 
 
-  logout(){
-    this.token = null;
-    this.authStatusSubject.next(false);
-    this.router.navigate(['/'])
-  }
+    private salvarDadosDeAutenticacao (tokenAuth: string, validade: Date, idPaciente: string){
+      localStorage.setItem ('tokenAuth', tokenAuth);
+      localStorage.setItem ('validade', validade.toISOString());
+      localStorage.setItem ('idPaciente', idPaciente);
+    }
+
+    private removerDadosDeAutenticacao (){
+      localStorage.removeItem ('tokenAuth');
+      localStorage.removeItem ('validade');
+      localStorage.removeItem ('idPaciente');
+    }
+
+    public autenticarAutomaticamente (): void{
+      const dadosAutenticacao = this.obterDadosDeAutenticacao();
+      if (dadosAutenticacao){
+        const agora = new Date();
+        const diferenca = dadosAutenticacao.validade.getTime() - agora.getTime();
+        if (diferenca > 0){
+          this.tokenAuth = dadosAutenticacao.tokenAuth;
+          this.autenticadoUser = true;
+          this.idPaciente = dadosAutenticacao.idPaciente;
+          this.tokenTimer = setTimeout(() => {
+            this.logout();
+          }, diferenca);
+          this.authStatusSubject.next(true);
+        }
+      }
+    }
+
+    private obterDadosDeAutenticacao(){
+      const tokenAuth = localStorage.getItem ('tokenAuth');
+      const validade = localStorage.getItem ('validade');
+      const idPaciente = localStorage.getItem ('idPaciente');
+      if (tokenAuth && validade) {
+        return {tokenAuth: tokenAuth, validade: new Date(validade), idPaciente: idPaciente}
+      }
+      return null;
+    }
+
+
+
+logout(){
+  this.tokenAuth = null;
+  this.authStatusSubject.next(false);
+  this.autenticadoUser = false;
+  clearTimeout(this.tokenTimer);
+  this.idPaciente = null;
+  this.removerDadosDeAutenticacao()
+  this.router.navigate(['/'])
+}
+
 
 
 

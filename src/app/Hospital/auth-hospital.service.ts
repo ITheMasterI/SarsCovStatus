@@ -28,6 +28,11 @@ public getStatusSubject(){
   return this.authStatusSubject.asObservable();
 }
 
+
+
+
+
+
 private autenticado: boolean = false;
 
 public isAutenticado(): boolean{

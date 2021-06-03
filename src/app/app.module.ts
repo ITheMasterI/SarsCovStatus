@@ -25,6 +25,7 @@ import { ChatComponent } from './chat/chat.component';
 
 import {AuthInterceptor} from './Hospital/auth-interceptor'
 import { SocketioService } from './socketio.service';
+//import { AuthInterceptorPaciente } from './painel/Paciente/login-paciente/auth-interceptor-paciente'
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { SocketioService } from './socketio.service';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    //{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorPaciente, multi: true},
     SocketioService
   ],
   bootstrap: [AppComponent]

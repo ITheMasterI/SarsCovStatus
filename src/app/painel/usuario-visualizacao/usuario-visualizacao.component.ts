@@ -26,8 +26,8 @@ hospitais:Hospital[] = [];
 private hospitaisSubscription!: Subscription;
 
 
-private authObserver: Subscription;
-public autenticado: boolean = false;
+private authObserverUser: Subscription;
+public Userautenticado: boolean = false;
 
 
 constructor(
@@ -40,7 +40,7 @@ public route: ActivatedRoute
 
   ngOnDestroy(): void {
     this.hospitaisSubscription.unsubscribe();
-    this.authObserver.unsubscribe();
+    this.authObserverUser.unsubscribe();
   }
 
 
@@ -83,12 +83,12 @@ this.authHospitalService.getHospitais();
         this.hospitais = hospitais;
       });
 
-    this.autenticado = this.painelService.isAutenticado();
+    this.Userautenticado = this.painelService.isAutenticado();
 
-    this.authObserver =
+    this.authObserverUser =
     this.painelService.getStatusSubject().
     subscribe((autenticado) => {
-    this.autenticado = autenticado;
+    this.Userautenticado = autenticado;
     })
 
 

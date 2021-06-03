@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from "./painel/painel.model"
 import { Hospital } from './Hospital/auth-hospital.model'
 import { AuthHospitalService } from './Hospital/auth-hospital.service';
+import { PainelService } from './painel/painel.service';
 
 
 @Component({
@@ -16,11 +17,14 @@ export class AppComponent {
   usuarios: Usuario[] = [];
   hospitais: Hospital[] = [];
 
-  constructor(private authHospitalService: AuthHospitalService){
+  constructor(private authHospitalService: AuthHospitalService,
+    private painelService: PainelService
+    ){
   }
 
   ngOnInit(){
   this.authHospitalService.autenticarAutomaticamente();
+  //this.painelService.autenticarAutomaticamente();
   }
 
 

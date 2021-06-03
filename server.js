@@ -1,8 +1,6 @@
 const http = require('http');
-const { UseExistingWebDriver } = require('protractor/built/driverProviders');
 const app = require('./backend/app');
 const port = process.env.PORT || 3000;
-const Chat = require('./backend/models/chat')
 
 
 app.set('port', port);
@@ -16,30 +14,29 @@ const io = require('socket.io')(server, {
 });
 
 
+const sockets = [];
 
-  io.on('connection', (socket) => {
-
+io.on('connection', (socket) => {
+    sockets.push(socket);
     console.log(`New connection ${socket.id}`);
 
+    socket.on('message', (message) => {
+        for(var i = 0; i < sockets.length; i++){
+            sockets[i].send(message)
+        }
+    })
+
+
+
     socket.on('disconnect', () => {
-      console.log(`Usuário desconectado ${socket.id}`);
-    });
-
-
-    socket.on('chat', function(data){
-
-      io.sockets.emit('chat', data);
-  });
-
-
-  socket.on('typing', function(data){
-    io.sockets.emit('typing', data);
-
-});
-
-
-});
-
-
+        for(var i = 0; i < sockets.length; i++){
+            if(sockets[i].id === socket.id){
+                sockets.splice(i, 1); //deleta um elemento do array (posicao, numero de elementos a ser excluido)
+            }
+        }
+        console.log(`o id: ${socket.id} saiu ` + 'ainda restam ' + sockets.length + ' online')
+    })
+})
 
 server.listen(port);
+

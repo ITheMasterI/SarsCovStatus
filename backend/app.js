@@ -11,7 +11,8 @@ const jwt = require('jsonwebtoken');
 const Usuario = require('./models/usuario');
 const Hospital = require('./models/hospital');
 const checkAuth = require ('./middleware/check-auth');
-
+//const io = require('socket.io-client')
+//let socket = io.connect("http://localhost:3000")
 
 
 
@@ -26,7 +27,6 @@ mongoose.connect(`mongodb+srv://${user_db}:${pass_db}@${cluster_db}.mongodb.net/
 }).catch(() => {
   console.log("Erro ao conectar-se com o Banco de Dados");
 })
-
 
 
 app.post('/api/usuarios', checkAuth, (req, res, next) => {
@@ -105,6 +105,20 @@ app.delete ('/api/usuarios/:id', checkAuth, (req, res, next) => {
     res.status(200).json({mensagem: 'Atualização realizada com sucesso'});
   })
 
+
+  //----------------------Chat Real-Time--------------------------
+/*
+  socket.on("welcome", (data) => {
+    console.log("received: ", data)
+  })
+
+  socket.emit("joinRoom", "");
+
+  socket.on("err", (err) => console.log(err));
+
+  socket.on("err", (sucess) => console.log(sucess));
+
+*/
 
 
 
@@ -191,13 +205,14 @@ app.post('/api/usuarios/login', (req, res, next) => {
         mensagem: "id inválido"
         })
     }
-    const token = jwt.sign(
+    const tokenAuth = jwt.sign(
       {cpf: pacienteUser.cpf, id: pacienteUser._id},
-      'minhasenha',
+      'meuid',
       {expiresIn: '1h'}
     )
-    res.status(200).json({token: token})
-
+    res.status(200).json({tokenAuth: tokenAuth,
+      expiresIn: 3600
+      })
     })
     .catch(err => {
       return res.status(401).json({
