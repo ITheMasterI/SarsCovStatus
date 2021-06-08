@@ -1,91 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"
-  ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
 
-  <link rel="stylesheet" href="home.component.css" />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-    crossorigin="anonymous"
-  />
+    <link rel="stylesheet" href="home.component.css" />
 
-  <title>Home</title>
-</head>
-
-    <body >
-      <style>
-        body{
-
-          background-image: url(assets/img/backgroundloginfade.jpg);
-          background-attachment: fixed;
-          background-size: 100%;
-          background-repeat: no-repeat;
-          height: 1000px;
-        }
-      </style>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="">
-    <img
-      src="assets/img/Icon.png"
-      width="70"
-      height="70"
-      class="d-inline-block align-top"
-      alt="Ícone"
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
     />
-  </a>
-  <a class="navbar-brand" routerLink="">Início</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarText"
-    aria-controls="navbarText"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/cadastro"
-          >Cadastre-se! <span class="sr-only">(current)</span></a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login Corporativo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login-paciente">Login Paciente</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<br />
-<br />
-<br />
-<br />
 
+    <title>Home</title>
+  </head>
 
+  <body>
+    <style>
+      body {
+        background-image: url(assets/img/backgroundloginfade.jpg);
+        background-attachment: fixed;
+        background-size: 120%;
+        background-repeat: no-repeat;
+        height: 1900px;
+      }
+    </style>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" routerLink="">
+        <img
+          src="assets/img/Icon.png"
+          width="70"
+          height="70"
+          class="d-inline-block align-top"
+          alt="Ícone"
+        />
+      </a>
+      <a class="navbar-brand" routerLink="">Início</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/cadastro"
+              >Cadastre-se! <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login Corporativo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login-paciente">Login Paciente</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 
+    <div class="left-box">
+      <button>Conheça nossa Plataforma!</button>
+      <p>
+        O SarsCovStatus é uma solução para ajudar a comunicação entre o corpo de
+        Doutores e os familiares do paciente!
+      </p>
+      <p>
+        <a href="#conheca"><u>Clique aqui</u></a> e conheça mais sobre a
+        plataforma!
+      </p>
+    </div>
 
+    <div class="right-box">
+      <button>Chat</button>
+      <p>
+        Nosso chat foi 100% desenvolvido pela nossa equipe de profissionais para
+        a comunicação entre as partes em tempo real.
+      </p>
+      <p>
+        O chat foi criado prezando a usabilidade, para que qualquer usuário
+        possa se adaptar rapidamente e consiga utilizar a plataforma sem grandes
+        dificuldades.
+      </p>
+      <p>
+        O chat pode ser acessado por ambos os lados, tanto o do paciente, quanto
+        o do hospital
+      </p>
+    </div>
 
+    <div class="middle-box">
+      <div class="middle-1">
+        <img src="assets/img/cell_icon.png" alt="" width="100px" />
+        <p>
+          O acesso à plataforma pode ser feito através de seu computador ou até
+          mesmo dos seus dispositivos móveis com acesso à internet!
+        </p>
+      </div>
+      <div class="middle-2">
+        <img src="assets/img/hospital_icon.png" alt="" width="100px" />
+        <p>
+          Não se preocupe com a confiabilidade do sistema. Os hospitais
+          cadastrados são credenciados e precisam informar uma série de
+          documentos para serem aprovados na plataforma.
+        </p>
+      </div>
+      <div class="middle-3">
+        <img src="assets/img/login_icon.png" alt="" width="100px" />
+        <p>
+          As informações de login seram passadas para o usuário pelo hospital,
+          exija suas informações entrando em contato com o hospital
+        </p>
+      </div>
+    </div>
 
-
-
-
-    </body>
-    </html>
+    <div class="bottom-box" id="conheca">
+      <h3>Conheça a plataforma!</h3>
+      <video controls>
+        <source src="assets/img/video.mp4" type="video/mp4" />
+        Seu navegador não suporta tags de vídeo.
+      </video>
+    </div>
+  </body>
+</html>

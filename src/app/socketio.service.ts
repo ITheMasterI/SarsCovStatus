@@ -16,21 +16,32 @@ export class SocketioService {
   readonly uri: string = 'ws://localhost:3000'
 
 
-constructor(){
-  this.socket = io(this.uri)
+
+  constructor(){
+
+  }
+
+setupSocketConnection(){
+  this.socket = io(this.uri);
 }
 
-listen(eventName: string){
+
+
+listen(eventname: string) : Observable<any> {
   return new Observable((subscriber) => {
-    this.socket.on(eventName, (data) => {
-      subscriber.next(data);
-    })
-  });
+      this.socket.on(eventname, (data) => {
+          subscriber.next(data);
+      })
+  })
 }
 
-emit(eventName: string, data: any){
-  this.socket.emit(eventName, data)
+emit(eventname: string, data: any) {
+  this.socket.emit(eventname, data);
 }
+
+
+
+
 
 }
 
