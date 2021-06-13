@@ -5,7 +5,6 @@ import { io } from 'socket.io-client'
 
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -44,5 +43,3 @@ emit(eventname: string, data: any) {
 
 
 }
-
-

@@ -28,6 +28,8 @@ import { SocketioService } from './socketio.service';
 //import { AuthInterceptorPaciente } from './painel/Paciente/login-paciente/auth-interceptor-paciente'
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { SocketioService } from './socketio.service';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

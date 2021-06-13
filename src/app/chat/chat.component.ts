@@ -8,7 +8,9 @@ import { SocketioService } from '../socketio.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit{
+export class ChatComponent //implements OnInit
+{
+
 
   userName: string;
   message: string;
@@ -54,6 +56,9 @@ export class ChatComponent implements OnInit{
   updateFeedback(data: any){
     this.feedback = `${data} is typing a message`;
   }
+
+
+
 
 
 
