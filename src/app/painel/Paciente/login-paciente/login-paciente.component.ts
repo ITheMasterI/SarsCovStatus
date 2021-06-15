@@ -24,7 +24,7 @@ onLoginPaciente(form: NgForm){
 
 if(form.invalid) return;
 
-this.painelService.login(
+this.painelService.loginPaciente(
 
 
 form.value.id,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from './painel.model';
-import { from, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root'})
 export class PainelService {
+
   private usuarios: Usuario[] = [];
   private listaUsuariosAtualizada = new Subject<Usuario[]>();
 
 
   private tokenAuth: string;
-  private authStatusSubject = new Subject<boolean>();
+  private authUserStatusSubject = new Subject<boolean>();
   private tokenTimer: NodeJS.Timer;
   private idPaciente: string;
 
@@ -21,19 +22,19 @@ export class PainelService {
 
 
 
-  public getToken(): string{
+  public getUserToken(): string{
     return this.tokenAuth;
   }
 
-  public getStatusSubject(){
-    return this.authStatusSubject.asObservable();
+  public getUserStatusSubject(){
+    return this.authUserStatusSubject.asObservable();
   }
 
 
 
 private autenticadoUser: boolean = false;
 
-public isAutenticado(): boolean{
+public isUserAutenticado(): boolean{
   return this.autenticadoUser;
 }
 
@@ -128,7 +129,7 @@ atualizarUsuario (id: string, nome: string, cpf: string, email: string, status: 
 
 
 
-login (id: string, nome: string, cpf: string, email: string, status: string, relatorio: string){
+loginPaciente(id: string, nome: string, cpf: string, email: string, status: string, relatorio: string){
   const usuario: Usuario = {
 
     _id: id,
@@ -139,15 +140,15 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
     relatorio: relatorio
 
   }
-  this.httpClient.post<{token: string, expiresIn: number}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
-    this.tokenAuth = resposta.token;
+  this.httpClient.post<{Usuariotoken: string, expiresIn: number}>("http://localhost:3000/api/usuarios/login", usuario).subscribe(resposta => {
+    this.tokenAuth = resposta.Usuariotoken;
     if(this.tokenAuth){
       const tempoValidadeToken = resposta.expiresIn;
       this.tokenTimer = setTimeout(() => {
         this.logout()
       }, tempoValidadeToken * 1000);
       this.autenticadoUser = true;
-      this.authStatusSubject.next(true);
+      this.authUserStatusSubject.next(true);
       this.salvarDadosDeAutenticacao(this.tokenAuth, new Date(new Date().getTime() + tempoValidadeToken * 1000)
             , this.idPaciente);
 
@@ -158,8 +159,8 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
     }
 
 
-    private salvarDadosDeAutenticacao (token: string, validade: Date, idPaciente: string){
-      localStorage.setItem ('token', token);
+    private salvarDadosDeAutenticacao (tokenUser: string, validade: Date, idPaciente: string){
+      localStorage.setItem ('token', tokenUser);
       localStorage.setItem ('validade', validade.toISOString());
       localStorage.setItem ('idPaciente', idPaciente);
     }
@@ -182,7 +183,7 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
           this.tokenTimer = setTimeout(() => {
             this.logout();
           }, diferenca);
-          this.authStatusSubject.next(true);
+          this.authUserStatusSubject.next(true);
         }
       }
     }
@@ -201,7 +202,7 @@ login (id: string, nome: string, cpf: string, email: string, status: string, rel
 
 logout(){
   this.tokenAuth = null;
-  this.authStatusSubject.next(false);
+  this.authUserStatusSubject.next(false);
   this.autenticadoUser = false;
   clearTimeout(this.tokenTimer);
   this.idPaciente = null;

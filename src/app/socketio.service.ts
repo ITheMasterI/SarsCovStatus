@@ -22,8 +22,7 @@ export class SocketioService {
 
 setupSocketConnection(){
   this.socket = io(this.uri);
-}
-
+ }
 
 
 listen(eventname: string) : Observable<any> {

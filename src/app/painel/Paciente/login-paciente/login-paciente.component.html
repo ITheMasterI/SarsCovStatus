@@ -1,72 +1,81 @@
 <head>
+  <link rel="stylesheet" href="login-paciente.component.css" />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
 
+  <title>Login Paciente</title>
+</head>
+<body>
+  <style>
+    body {
+      background-image: url(assets/img/backgroundloginfade.jpg);
+      background-attachment: fixed;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      height: 1000px;
+    }
+  </style>
 
-    <link rel="stylesheet" href="login-paciente.component.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+  <button
+    class="btn-navgation"
+    type="button"
+    value="Voltar"
+    onClick="history.go(-1)"
+  >
+    <img src="assets/img/back_icon.png" width="75px" alt="" />
+  </button>
+  <br />
+  <br />
+  <div class="wrapper">
+    <h2 class="wrapper-title" align="center">Faça Login!</h2>
+    <hr />
 
-    <title>Login Paciente</title>
-  </head>
-  <body>
-    <style>
-      body{
+    <form autocomplete="on">
+      <div class="form-row">
+        <a *ngIf="estaCarregando"></a>
 
-        background-image: url(assets/img/backgroundloginfade.jpg);
-        background-attachment: fixed;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        height: 1000px;
-      }
-    </style>
-
-
-        <button
-          class="btn-navgation"
-          type="button"
-          value="Voltar"
-          onClick="history.go(-1)">
-          <img src="assets/img/back_icon.png" width="75px" alt="">
-      </button>
-      <br>
-      <br>
-    <div class="wrapper">
-        <h2 class="wrapper-title" align="center">Faça Login!</h2>
-      <hr />
-
-
-      <form autocomplete="on">
-        <div class="form-row">
-
-          <a *ngIf="estaCarregando"></a>
-
-<form (submit)="onLoginPaciente(loginPacienteForm)" #loginPacienteForm="ngForm" *ngIf="!estaCarregando">
-
-
+        <form
+          (submit)="onLoginPaciente(loginPacienteForm)"
+          #loginPacienteForm="ngForm"
+          *ngIf="!estaCarregando"
+        >
           <div class="form-group col-md-6">
             <label for="idInput">Código de Login</label>
-            <input type="text" class="form-control" autocomplete="off" name="id" size="1000" ngModel #idInput="ngModel" id="idInput"/>
+            <input
+              type="text"
+              class="form-control"
+              autocomplete="off"
+              name="id"
+              size="1000"
+              ngModel
+              #idInput="ngModel"
+              id="idInput"
+            />
           </div>
 
           <div class="form-group">
             <label for="cpfInput">CPF</label>
-            <input type="text" class="form-control" name="cpf" autocomplete="off" ngModel #cpfInput="ngModel" id="cpfInput" />
+            <input
+              type="text"
+              class="form-control"
+              name="cpf"
+              autocomplete="off"
+              ngModel
+              #cpfInput="ngModel"
+              id="cpfInput"
+            />
           </div>
 
-      <br>
-      <br>
-      <br>
-      <br>
-      <button type="submit" class="btn btn-success btn-lg btn-block">
-        Entrar
-      </button>
-
+          <br />
+          <button type="submit" class="btn btn-success btn-lg btn-block">
+            Entrar
+          </button>
+        </form>
+      </div>
     </form>
-    </div>
-</form>
-</div>
-  </body>
-
+  </div>
+</body>

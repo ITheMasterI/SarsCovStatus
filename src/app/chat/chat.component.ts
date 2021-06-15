@@ -25,7 +25,6 @@ export class ChatComponent //implements OnInit
 
   ngOnInit():void {
     this.socketioService.setupSocketConnection();
-    this.socketioService.listen('typing').subscribe((data) => this.updateFeedback(data));
     this.socketioService.listen('chat').subscribe((data) => this.updateMessage(data));
 
 
@@ -38,10 +37,8 @@ export class ChatComponent //implements OnInit
   sendMessage(): void {
     this.socketioService.emit('chat', {
       message: this.message,
-      handle: this.userName
 
     });
-
     this.message = "";
 
   }
@@ -49,13 +46,11 @@ export class ChatComponent //implements OnInit
   updateMessage(data:any) {
     this.feedback = '';
     if(!!!data) return;
-    console.log(`${data.handle} : ${data.message}`);
+    console.log(`${data.message}`);
     this.output.push(data);
   }
 
-  updateFeedback(data: any){
-    this.feedback = `${data} is typing a message`;
-  }
+
 
 
 

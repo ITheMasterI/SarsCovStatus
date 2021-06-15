@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 
     <link rel="stylesheet" href="painel-controle.component.css" />
     <link
@@ -60,7 +57,7 @@
           <input type="radio" id="tab1" class="rd_tab" name="tabs" checked />
           <label for="tab1" class="tab_label">Cadastrar Paciente</label>
           <div class="tab-content">
-            <h2>Cadastrar</h2>
+            <h2 class="cadastrar">Cadastrar</h2>
             <article>
               <a *ngIf="autenticado">
               <a class="btn-add" routerLink="/cadastro-paciente">
@@ -80,7 +77,7 @@
           <input type="radio" name="tabs" class="rd_tab" id="tab2" />
           <label for="tab2" class="tab_label">Meus Pacientes</label>
           <div class="tab-content">
-            <h2 style="text-align: center">Lista de Pacientes</h2>
+            <h2 class="lista" style="text-align: center">Lista de Pacientes</h2>
 
             <!--Mexer daqui-->
 
@@ -154,4 +151,3 @@
       </ul>
     </nav>
   </body>
-</html>

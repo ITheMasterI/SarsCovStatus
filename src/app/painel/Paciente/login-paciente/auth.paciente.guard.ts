@@ -1,5 +1,4 @@
-
-import { Injectable } from "@angular/core";
+/*import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from
 "@angular/router";
 import { Observable } from "rxjs";
@@ -16,14 +15,14 @@ private router: Router
 }
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree |
 Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-const isAutenticado = this.painelService.isAutenticado();
-if (!isAutenticado){
+const isUsuarioAutenticado = this.painelService.isUserAutenticado();
+if (!isUsuarioAutenticado){
 this.router.navigate(['/']);
 }
-return isAutenticado;
+return isUsuarioAutenticado;
 }
 }
-
+*/
 
 
 

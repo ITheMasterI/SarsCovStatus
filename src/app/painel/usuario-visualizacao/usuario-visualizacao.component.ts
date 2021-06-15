@@ -27,7 +27,7 @@ private hospitaisSubscription!: Subscription;
 
 
 private authObserverUser: Subscription;
-public autenticado: boolean = false;
+public UserAutenticado: boolean = false;
 
 
 constructor(
@@ -83,12 +83,12 @@ this.authHospitalService.getHospitais();
         this.hospitais = hospitais;
       });
 
-    this.autenticado = this.painelService.isAutenticado();
+    this.UserAutenticado = this.painelService.isUserAutenticado();
 
     this.authObserverUser =
-    this.painelService.getStatusSubject().
+    this.painelService.getUserStatusSubject().
     subscribe((autenticado) => {
-    this.autenticado = autenticado;
+    this.UserAutenticado = autenticado;
     })
 
 

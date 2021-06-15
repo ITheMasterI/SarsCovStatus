@@ -14,12 +14,12 @@ import {UsuarioAtualizaComponent} from './painel/usuario-atualiza/usuario-atuali
 import { UsuarioVisualizacaoComponent } from './painel/usuario-visualizacao/usuario-visualizacao.component';
 import { ChatComponent } from './chat/chat.component';
 import { AuthGuard } from './Hospital/auth.guard'
-import { AuthPacienteGuard} from './painel/Paciente/login-paciente/auth.paciente.guard'
+//import { AuthPacienteGuard} from './painel/Paciente/login-paciente/auth.paciente.guard'
 
 
 const routes: Routes = [
   { path: "chat", component: ChatComponent},
-  { path: "profile/:idUsuario", component: UsuarioVisualizacaoComponent, canActivate: [AuthPacienteGuard]},
+  { path: "profile/:idUsuario", component: UsuarioVisualizacaoComponent },
   { path: "editar/:idUsuario", component: UsuarioAtualizaComponent, canActivate: [AuthGuard]},
   { path: "cadastro-paciente", component: CadastroUsuarioComponent, canActivate: [AuthGuard]},
   { path: "painel-controle", component: PainelControleComponent, canActivate: [AuthGuard]},
@@ -35,7 +35,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [AuthGuard,
-    AuthPacienteGuard
+   // AuthPacienteGuard
   ]
 })
 export class AppRoutingModule { }

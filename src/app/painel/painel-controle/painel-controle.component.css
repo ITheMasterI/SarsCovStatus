@@ -33,7 +33,7 @@
   background: none;
   border-color: none;
   border: 0ch;
-  margin-left: 45px;
+  margin-left: 360px;
 }
 
 * {
@@ -96,6 +96,7 @@
 .tab-content h2 {
   padding: 10px;
   color: #87d3b7;
+  text-align: center;
 }
 .tab-content article {
   padding: 10px;
@@ -145,4 +146,14 @@
   margin-left: 185px;
   margin-bottom: 20px;
   object-fit: scale-down;
+}
+
+.cadastrar {
+  font-size: 45px;
+  margin-top: 35px;
+}
+
+.lista {
+  font-size: 35px;
+  margin-top: 25px;
 }
